@@ -1,0 +1,29 @@
+
+<h1>Shopping Cart</h1>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+{% for product_id, item in cart.items() %}
+<tr>
+<td>{{ products[product_id]['name'] }}</td>
+<td>
+<form action="/update_cart" method="post">
+<input type="hidden" name="product_id" value="{{ product_id }}">
+<input type="number" name="quantity" value="{{ item['quantity'] }}">
+<input type="submit" value="Update">
+</form>
+</td>
+<td>${{ item['quantity'] * products[product_id]['price'] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<a href="/checkout">Checkout</a>
+
+
